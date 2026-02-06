@@ -48,7 +48,6 @@ See [original repository](https://academiapme-my.sharepoint.com/:u:/g/personal/r
 
 <img width="1536" height="1024" alt="step05" src="https://github.com/user-attachments/assets/cb7d78ee-8093-40f0-8b5e-0bc44fd062a8" />
 
-
 ## Solution
 
 ### Screen 01
