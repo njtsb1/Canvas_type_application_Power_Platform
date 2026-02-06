@@ -52,7 +52,7 @@ See [original repository](https://academiapme-my.sharepoint.com/:u:/g/personal/r
 
 ### Screen 01
 
-<img width="1315" height="611" alt="screen1" src="https://github.com/user-attachments/assets/40aad32e-a2a9-48eb-b2af-ab24121a8693" />
+<img width="1315" height="611" alt="screen1" src="https://github.com/user-attachments/assets/ae3aacb3-1d22-4a34-95ae-6b485ca29cb4" />
 
 ### Screen 02
 
