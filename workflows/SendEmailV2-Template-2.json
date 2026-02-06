@@ -1,0 +1,93 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_outlook": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "curso_sharedoutlook_ab3fd"
+        },
+        "api": {
+          "name": "shared_outlook"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "9d621d92-1f59-4f1b-9a3c-d20c38720ef2"
+          },
+          "type": "Request",
+          "kind": "PowerApp",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "SendAnEmailV2_To": {
+                  "type": "string",
+                  "format": "email",
+                  "description": "Specify email addresses separated by semicolons, for example name@contoso.com",
+                  "x-ms-powerflows-param-ispartial": false
+                },
+                "SendAnEmailV2_Body": {
+                  "type": "string",
+                  "format": "html",
+                  "description": "Specify the email body. This parameter is used as part of \"68EB73A0-A791-4C54-8B4F-1E1AE7119E14\"",
+                  "x-ms-powerflows-param-ispartial": true
+                },
+                "SendAnEmailV2_Body_1": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "SendAnEmailV2_To",
+                "SendAnEmailV2_Body",
+                "SendAnEmailV2_Body_1"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Send_an_email_V2": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "75e07aa6-29d4-409b-a34a-a59a2066966a"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_outlook",
+              "operationId": "SendEmailV2",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_outlook"
+            },
+            "parameters": {
+              "emailMessage/To": "@triggerBody()['SendAnEmailV2_To']",
+              "emailMessage/Subject": "New Course Enabled",
+              "emailMessage/Body": "<p>Hello @{triggerBody()['SendAnEmailV2_Body']},<br>\nThe course @{triggerBody()['SendAnEmailV2_Body_1']} has been enabled for you to be an instructor.<br>\n<br>\nGood luck and good work,<br>\nTraining Team.</p>",
+              "emailMessage/Importance": "Normal"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}
